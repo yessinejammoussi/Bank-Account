@@ -1,8 +1,8 @@
 package org.bankAccount.domain.service;
 
+import org.bankAccount.adapter.infrastructure.persistence.AccountRepository;
 import org.bankAccount.domain.model.Account;
 import org.bankAccount.domain.model.Transaction;
-import org.bankAccount.domain.repository.AccountRepository;
 
 import java.util.List;
 

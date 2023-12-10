@@ -1,6 +1,6 @@
 package org.bankAccount.domain.service;
 
-import org.bankAccount.domain.repository.TransactionRepository;
+import org.bankAccount.adapter.infrastructure.persistence.TransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
