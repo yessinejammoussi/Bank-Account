@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Account {
-    private int idAccount;
+    private Long idAccount;
     private double balance;
     private List<Transaction> transactions;
 
-    public Account(int idAccount, double balance, List<Transaction> transactions) {
+    public Account(Long idAccount, double balance, List<Transaction> transactions) {
         this.idAccount = idAccount;
         this.balance = balance;
         this.transactions = transactions;

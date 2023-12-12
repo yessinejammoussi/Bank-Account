@@ -4,19 +4,19 @@ import java.time.LocalDateTime;
 
 public class Transaction {
 
-    private int idTransaction;
+    private Long idTransaction;
     private LocalDateTime timestamp;
 
-    private int idAccount;
+    private Long idAccount;
     private double amount;
 
-    public Transaction(double amount,int idTransaction, int idAccount) {
+    public Transaction(double amount,Long idTransaction, Long idAccount) {
         this.idTransaction = idTransaction;
         this.timestamp = LocalDateTime.now();
         this.idAccount = idAccount;
         this.amount = amount;
     }
-    public Transaction(double amount, int idAccount) {
+    public Transaction(double amount, Long idAccount) {
         this.timestamp = LocalDateTime.now();
         this.idAccount = idAccount;
         this.amount = amount;

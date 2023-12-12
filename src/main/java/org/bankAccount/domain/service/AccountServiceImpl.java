@@ -1,17 +1,25 @@
 package org.bankAccount.domain.service;
 
 import org.bankAccount.adapter.infrastructure.persistence.AccountRepository;
+import org.bankAccount.domain.Dto.AccountDTO;
+import org.bankAccount.domain.Dto.TransactionDTO;
 import org.bankAccount.domain.model.Account;
 import org.bankAccount.domain.model.Transaction;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.bankAccount.domain.Dto.TransactionDTO.mapTransactionToTransactionDTOList;
 
 public class AccountServiceImpl implements AccountService{
 
     private final AccountRepository accountRepository;
+    private final ModelMapper modelMapper;
 
-    public AccountServiceImpl(AccountRepository accountRepository) {
+    public AccountServiceImpl(AccountRepository accountRepository,ModelMapper modelMapper) {
         this.accountRepository = accountRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -27,12 +35,15 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public double checkBalance(Account account) {
-        return account.getBalance();
+    public AccountDTO checkBalance(Long idAccount) {
+        Optional<Account> account =  accountRepository.findById(idAccount);
+        return new AccountDTO(account.map(Account::getBalance).orElse(0.0));
     }
 
     @Override
-    public List<Transaction> getTransactions(Account account) {
-        return account.getTransactions();
+    public List<TransactionDTO> getTransactions(Long idAccount) {
+        Optional<Account> account =  accountRepository.findById(idAccount);
+        List<Transaction> transactions = account.map(Account::getTransactions).orElse(null);
+        return mapTransactionToTransactionDTOList(modelMapper, transactions, TransactionDTO.class);
     }
 }
